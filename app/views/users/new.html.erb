@@ -1,11 +1,5 @@
 <h1> Sign Up Here</h1>
 
-<% if flash[:notice] %>
-<div><%= flash[:notice] %></div>
-<br>
-<%end %>
-
-
 <%= form_for @user, url: {action: 'create', controller: "users"} do |f| %>
 <%= f.label :email %>
 <%= f.text_field :email%>

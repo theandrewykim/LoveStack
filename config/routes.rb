@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'tags#index'
+  root 'questions#index'
 
   resources :users, except: [:index]
 
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :tags, only: [:index, :show]
 
-  resources :questions do 
+  resources :questions do
     resources :answers do
       #nest Responses in here as well?
 
