@@ -12,8 +12,11 @@ Rails.application.routes.draw do
 
   resources :tags, only: [:index, :show]
 
+
   resources :questions do
+    resources :votes, only: [:create]
     resources :answers, only: [:new, :create, :destroy, :edit, :update] do
+      resources :votes, only?: [:create]
       #nest Responses in here as well?
 
 
