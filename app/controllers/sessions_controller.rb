@@ -9,13 +9,11 @@ class SessionsController < ApplicationController
 
 
 	def create
-		binding.pry
-		#difficulty finding user by email, params doesn't bring in the whole e-mail address
-		
 		@user = User.find_by(email: params[:email])
 
 		if @user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id
+			redirect_to '/'
 		else
 			flash[:notice] = "Please Try Again"
 			render '/sessions/new'
