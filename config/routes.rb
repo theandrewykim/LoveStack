@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
+  resources :tags, only: [:index, :show]
+
   resources :questions do 
     resources :answers do
       #nest Responses in here as well?
