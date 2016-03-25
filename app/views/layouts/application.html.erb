@@ -21,6 +21,11 @@
 
         <% end %>
     </ul>
+    <% if flash[:notice] %>
+      <div>
+        <%= flash[:notice] %>
+      </div><br>
+<%end %>
 
 <%= yield %>
 

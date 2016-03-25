@@ -1,12 +1,5 @@
 <h2> Log in!</h2>
 
-<% if flash[:notice] %>
-<div><%= flash[:notice] %></div>
-<br>
-<%end %>
-
-
-
 <%= form_tag('/sessions') do %>
 <%= label_tag :email, "E-mail" %>
 <%= email_field_tag :email %>
