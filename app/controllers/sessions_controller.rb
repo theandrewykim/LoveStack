@@ -2,11 +2,9 @@ class SessionsController < ApplicationController
 
 	skip_before_action :logged_in?
 
-
 	def new
 		render '/sessions/new'
 	end
-
 
 	def create
 		@user = User.find_by(email: params[:email])
