@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :tags, only: [:index, :show]
 
   resources :questions do
-    resources :answers do
+    resources :answers, only: [:new, :create, :destroy, :edit, :update] do
       #nest Responses in here as well?
 
 

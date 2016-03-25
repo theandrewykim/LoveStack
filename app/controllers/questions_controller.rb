@@ -4,6 +4,12 @@ class QuestionsController < ApplicationController
     @questions = Question.all
   end
 
+  def show
+    find_this_question
+    @answers = @question.answers
+    @answer = Answer.new
+  end
+
   def new
     @question = Question.new
   end
@@ -20,10 +26,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def show
-    find_this_question
-    @answers = @question.answers
-  end
 
   def edit
     find_this_question
