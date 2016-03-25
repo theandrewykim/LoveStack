@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-User.create(email:"bigbog@bob.com", password:"password")
+user = User.create(email:"bigbog@bob.com", password:"password")
 User.create(email:"littlebob@bob.com", password:"password")
 User.create(email:"testuser@bob.com", password:"password")
 
@@ -26,3 +26,9 @@ Question.create(title: "What is Ruby", content:"What is this Ruby Stuff?", user_
 # Answer.create(question_id:2, content:"It's a programming language", user_id:3)
 
 Answer.create(question_id: 2, content:"a programming language", user_id: 3, best: false)
+
+Vote.create(voteable_type:"Answer", voteable_id:1, vote_status:true, user_id:1)
+Vote.create(voteable_type:"Answer", voteable_id:1, vote_status:true, user_id:1)
+Vote.create(voteable_type:"Answer", voteable_id:1, vote_status:true, user_id:1)
+Vote.create(voteable_type:"Answer", voteable_id:1, vote_status:true, user_id:1)
+Vote.create(voteable_type:"Answer", voteable_id:1, vote_status:false, user_id:1)
