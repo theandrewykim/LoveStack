@@ -7,6 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav>
+    <ul id="nav-list">
+       <% if current_user %>
+        <li> <%= link_to "#{current_user.email}", "/users/#{current_user.id}" %></li>
+        <li> <%= link_to "Logout", "/sessions", method: :delete %> </li>
+        <% else %>
+          <br>
+        <li><%= link_to "Login", "/sessions/new" %></li>
+
+        <li><%= link_to "Join LoveStack", "/users/new" %></li>
+
+        <% end %>
+    </ul>
 
 <%= yield %>
 
