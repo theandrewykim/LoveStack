@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 	skip_before_action :logged_in?
 
-	def new 
+	def new
 		@user = User.new
 	end
 
@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 
 
 	def show
-		@user = current_user
+		@user = User.find(params[:id])
+		@questions = @user.questions
 	end
 
 
