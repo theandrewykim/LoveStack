@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :responses, as: :responsible
   has_many :votes, as: :voteable
+  has_many :tag_questions
   has_many :tags, through: :tag_questions
 
   validates :content, :title, :user, presence: true

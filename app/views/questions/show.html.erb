@@ -7,8 +7,6 @@
   <% if author?(answer)%>
     <%=link_to "Edit Answer", edit_question_answer_path(@question, answer) %>
     <%=link_to 'delete answer', [@question, answer], method: :delete, data: {confirm: 'Sure about that?'}%>
-    <%else%>
-    method no worky
   <%end%>
 <%end%>
 
