@@ -20,10 +20,10 @@ Tag.create(name:"Life")
 # Question.create(title: "What is Ruby", content:"What is this Ruby Stuff?", user_id:1)
 
 
-# # Response.create(content:"You're a Noob", user_id: 2, responsible_id: 2)
-# # Response.create(content:"Go away", user_id: 3)
+# Response.create(content:"You're a Noob", user_id: 2, responsible_id: 2)
+# Response.create(content:"Go away", user_id: 3)
 
-# # Answer.create(question_id:2, content:"It's a programming language", user_id:3)
+# Answer.create(question_id:2, content:"It's a programming language", user_id:3)
 
 # Answer.create(question_id: 2, content:"a programming language", user_id: 3, best: false)
 

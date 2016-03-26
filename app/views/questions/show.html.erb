@@ -1,8 +1,41 @@
+<h2><%=@question.title%></h2>
+<p><%=@question.content%></p>
+<p> <%=@question.vote_count%></p>
+<p><%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
+    <%= hidden_field_tag :voteable_type, "Question" %>
+    <%= hidden_field_tag :voteable_id, @question.id %>
+    <%= hidden_field_tag :vote_status, true %>
+
+    <%= f.submit "UpVote"%>
+  <%end%>
+</p>
+
+<p><%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
+    <%= hidden_field_tag :voteable_type, "Question" %>
+    <%= hidden_field_tag :voteable_id, @question.id %>
+    <%= hidden_field_tag :vote_status, false %>
+
+    <%= f.submit "DownVote"%>
+  <%end%>
+</p>
+
+<p>-----------------------</p>
+
+<section class = "answer-form">
+  <%if current_user %>
+    <%=render 'answers/form' %>
+  <%end%>
+</section>
+
+<h3> Answers For This Question</h3>
+
+
 <% @answers.each do |answer| %>
   <p><%=answer.user.email %>:
 
 
   <%=answer.content %></p>
+
 
   <% if author?(answer)%>
     <%=link_to "Edit Answer", edit_question_answer_path(@question, answer) %>
@@ -10,6 +43,4 @@
   <%end%>
 <%end%>
 
-<section class = "answer-form">
-  <%=render 'answers/form' %>
-</section>
+

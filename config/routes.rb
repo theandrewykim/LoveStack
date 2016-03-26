@@ -11,15 +11,11 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :tags, only: [:index, :show]
+  resources :votes, only: [:create]
 
 
   resources :questions do
-    resources :votes, only: [:create]
     resources :answers, only: [:new, :create, :destroy, :edit, :update] do
-      resources :votes, only?: [:create]
-      #nest Responses in here as well?
-
-
 
     end
   end
