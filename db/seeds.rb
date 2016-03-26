@@ -11,19 +11,19 @@
 # User.create(email:"littlebob@bob.com", password:"password")
 # User.create(email:"testuser@bob.com", password:"password")
 
-# Tag.create(name:"Ruby")
-# Tag.create(name:"JavaScript")
-# Tag.create(name:"Life")
+Tag.create(name:"Ruby")
+Tag.create(name:"JavaScript")
+Tag.create(name:"Life")
 
 
 # Question.create(title: "How do I make a class", content:"how can you make a ruby class?", user_id:1)
 # Question.create(title: "What is Ruby", content:"What is this Ruby Stuff?", user_id:1)
 
 
-# # Response.create(content:"You're a Noob", user_id: 2, responsible_id: 2)
-# # Response.create(content:"Go away", user_id: 3)
+# Response.create(content:"You're a Noob", user_id: 2, responsible_id: 2)
+# Response.create(content:"Go away", user_id: 3)
 
-# # Answer.create(question_id:2, content:"It's a programming language", user_id:3)
+# Answer.create(question_id:2, content:"It's a programming language", user_id:3)
 
 # Answer.create(question_id: 2, content:"a programming language", user_id: 3, best: false)
 
@@ -33,6 +33,8 @@
 # Vote.create(voteable_type:"Answer", voteable_id:1, vote_status:true, user_id:1)
 # Vote.create(voteable_type:"Answer", voteable_id:1, vote_status:false, user_id:1)
 andrew = User.create(email:"aykim@gmail.com", password:"test123")
+User.create(email:"test@test.com", password:"test")
+
 
 User.create(email:Faker::Internet.email, password:Faker::Number.number(6))
 User.create(email:Faker::Internet.email, password:Faker::Number.number(6))
@@ -68,7 +70,7 @@ up = [true, false]
 end
 
 
-40.times do
-  Vote.create(voteable_type:type[rand(0..1)], voteable_id:rand(1..5), user_id: rand(1..5), vote_status: up[rand(0..1)])
-end
+# 40.times do
+#   Vote.create(voteable_type:type[rand(0..1)], voteable_id:rand(1..5), user_id: rand(1..5), vote_status: up[rand(0..1)])
+# end
 

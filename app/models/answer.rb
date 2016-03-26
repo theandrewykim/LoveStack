@@ -6,8 +6,15 @@ class Answer < ActiveRecord::Base
 
   validates :content, :user, :question, presence: true
 
-    def vote_count
+  def vote_count
     self.votes.where(vote_status:true).length - self.votes.where(vote_status:false).length
   end
+
+  # def voted
+  #   if
+
+
+  # end
+
 
 end

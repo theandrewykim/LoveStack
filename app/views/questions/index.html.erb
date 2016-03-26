@@ -1,3 +1,8 @@
+<h1> Questions </h1>
+
+<div>
 <% @questions.each do |question| %>
   <%=question.vote_count%><div class = question-link><%=link_to question.title, question_path(question.id) %></div>
+  <br>
 <% end %>
+</div>

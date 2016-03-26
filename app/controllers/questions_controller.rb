@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
     find_this_question
     @answers = @question.answers
     @answer = Answer.new
+    @vote = Vote.new
   end
 
   def new
@@ -26,7 +27,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-
   def edit
     find_this_question
   end
@@ -43,13 +43,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def destroy
-    find_this_question
-    @question.destroy
-    flash[:notice] = "Your question was deleted."
-    redirect_to questions_path
-  end
-
   private
 
   def find_this_question
@@ -60,3 +53,4 @@ class QuestionsController < ApplicationController
     params.require(:question).permit(:title, :content).merge(user_id: current_user.id)
   end
 end
+
