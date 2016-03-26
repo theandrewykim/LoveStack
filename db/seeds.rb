@@ -70,7 +70,7 @@ up = [true, false]
 end
 
 
-40.times do
-  Vote.create(voteable_type:type[rand(0..1)], voteable_id:rand(1..5), user_id: rand(1..5), vote_status: up[rand(0..1)])
-end
+# 40.times do
+#   Vote.create(voteable_type:type[rand(0..1)], voteable_id:rand(1..5), user_id: rand(1..5), vote_status: up[rand(0..1)])
+# end
 

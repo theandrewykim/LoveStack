@@ -1,6 +1,12 @@
 <h2><%=@question.title%></h2>
 <p><%=@question.content%></p>
 <p> <%=@question.vote_count%></p>
+<section>
+  <h2>Responses</h2>
+  <%@question.responses.each do |response| %>
+    <%=response.user.email %>: <%=response.content %>
+  <% end %>
+</section>
 <p><%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
     <%= hidden_field_tag :voteable_type, "Question" %>
     <%= hidden_field_tag :voteable_id, @question.id %>
@@ -21,21 +27,23 @@
 
 <p>-----------------------</p>
 
+<h3> Answers For This Question</h3>
+
 <section class = "answer-form">
   <%if current_user %>
     <%=render 'answers/form' %>
   <%end%>
 </section>
 
-<h3> Answers For This Question</h3>
-
-
 <% @answers.each do |answer| %>
-  <p><%=answer.user.email %>:
-
-
+  <p><%=answer.user.email %>
   <%=answer.content %></p>
-
+  <section>
+    <h2>Responses</h2>
+    <% answer.responses.each do |response| %>
+      <%=response.user.email%>: <%=response.content%>
+    <% end %>
+  </section>
 
   <% if author?(answer)%>
     <%=link_to "Edit Answer", edit_question_answer_path(@question, answer) %>

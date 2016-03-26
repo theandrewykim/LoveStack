@@ -14,11 +14,12 @@ Rails.application.routes.draw do
   resources :votes, only: [:create]
 
 
-  resources :questions do
+  resources :questions, except: [:destroyg] do
     resources :answers, only: [:new, :create, :destroy, :edit, :update] do
-
     end
   end
+
+  resources :responses, only: [:new, :create]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
