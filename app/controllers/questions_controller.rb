@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.all
+    @vote = Vote.new
   end
 
   def show
@@ -9,10 +10,12 @@ class QuestionsController < ApplicationController
     @answers = @question.answers
     @answer = Answer.new
     @vote = Vote.new
+    @tags = @question.tags
   end
 
   def new
     @question = Question.new
+    @tags = Tag.all
   end
 
   def create
@@ -50,7 +53,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :content).merge(user_id: current_user.id)
+    params.require(:question).permit(:title, :content, {tag_ids: []}).merge(user_id: current_user.id)
   end
 end
 

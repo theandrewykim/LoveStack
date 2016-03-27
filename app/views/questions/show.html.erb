@@ -1,5 +1,11 @@
 <h2><%=@question.title%></h2>
 <p><%=@question.content%></p>
+<br>
+<br>
+<p>Tags:</p>
+<%@tags.each do |tag|%>
+<%=link_to tag.name, tag%>
+<%end%>
 <p> <%=@question.vote_count%></p>
 <section>
   <h2>Responses</h2>
@@ -37,13 +43,35 @@
 
 <% @answers.each do |answer| %>
   <p><%=answer.user.email %>
-  <%=answer.content %></p>
+  <%=answer.content %>
+  <%=answer.vote_count%>
+</p>
+
+  <p><%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
+    <%= hidden_field_tag :voteable_type, "Answer" %>
+    <%= hidden_field_tag :voteable_id, answer.id %>
+    <%= hidden_field_tag :vote_status, true %>
+
+    <%= f.submit "UpVote"%>
+  <%end%>
+</p>
+
+<p><%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
+    <%= hidden_field_tag :voteable_type, "Answer" %>
+    <%= hidden_field_tag :voteable_id, answer.id %>
+    <%= hidden_field_tag :vote_status, false %>
+
+    <%= f.submit "DownVote"%>
+  <%end%>
   <section>
     <h2>Responses</h2>
     <% answer.responses.each do |response| %>
       <%=response.user.email%>: <%=response.content%>
     <% end %>
   </section>
+
+</p>
+
 
   <% if author?(answer)%>
     <%=link_to "Edit Answer", edit_question_answer_path(@question, answer) %>
