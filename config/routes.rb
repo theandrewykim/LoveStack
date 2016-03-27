@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :answers, only: [:update]
+
   resources :responses, only: [:new, :create]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
