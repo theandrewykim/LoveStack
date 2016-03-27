@@ -12,6 +12,7 @@
   <%@question.responses.each do |response| %>
     <%=response.user.email %>: <%=response.content %>
   <% end %>
+  <br><%= link_to "Submit a response!", new_question_response_path(@question)%><br>
 </section>
 <p><%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
     <%= hidden_field_tag :voteable_type, "Question" %>
@@ -45,6 +46,13 @@
   <p>By: <%=link_to answer.user.email, answer.user %> at: <%=answer.created_at%></p>
  <p> <%=answer.content %></p>
   <%=answer.vote_count%>
+  <br>
+  <%= link_to "Respond to this answer!", new_question_answer_response_path(@question, answer)%>
+    <% if author?(answer)%>
+    <%=link_to "Edit Answer", edit_question_answer_path(@question, answer) %>
+    <%=link_to 'delete answer', [@question, answer], method: :delete, data: {confirm: 'Sure about that?'}%>
+  <%end%>
+
   <%if asker?(@question) && !answer.best%>
     <%=link_to "Choose as most helpful", answer_path(answer), :method=> :put %>
   <%elsif answer.best%>
@@ -79,10 +87,7 @@
 </p>
 
 
-  <% if author?(answer)%>
-    <%=link_to "Edit Answer", edit_question_answer_path(@question, answer) %>
-    <%=link_to 'delete answer', [@question, answer], method: :delete, data: {confirm: 'Sure about that?'}%>
-  <%end%>
+
 <%end%>
 
 
