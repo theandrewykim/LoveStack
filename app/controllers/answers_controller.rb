@@ -4,10 +4,10 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer = @question.answers.build(answer_params)
     if @answer.save
-      flash[:notice] = "Your question was posted!"
+      flash[:notice] = "Your answer was posted!"
       redirect_to @question
     else
-      flash.now[:notice] = "Your question was not posted correct."
+      flash.now[:notice] = "Your answer was not posted correct."
       # @question = Question.new
       render "questions/show"
     end
