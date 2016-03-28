@@ -6,5 +6,21 @@
   <h4><%=link_to question.title, question_path(question.id) %></h4>
   <p class = "light small"><%=question.user.email%>, Vote Count:<%=question.vote_count%></p>
   </section>
+  <p><%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
+    <%= hidden_field_tag :voteable_type, "Question" %>
+    <%= hidden_field_tag :voteable_id, question.id %>
+    <%= hidden_field_tag :vote_status, true %>
+
+    <%= f.submit "UpVote"%>
+  <%end%>
+</p>
+
+<p><%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
+    <%= hidden_field_tag :voteable_type, "Question" %>
+    <%= hidden_field_tag :voteable_id, question.id %>
+    <%= hidden_field_tag :vote_status, false %>
+
+    <%= f.submit "DownVote"%>
+  <%end%>
 <% end %>
 </section>

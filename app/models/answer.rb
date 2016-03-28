@@ -10,6 +10,7 @@ class Answer < ActiveRecord::Base
     self.votes.where(vote_status:true).length - self.votes.where(vote_status:false).length
   end
 
+
   # def voted
   #   if
 

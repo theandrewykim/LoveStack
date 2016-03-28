@@ -1,17 +1,26 @@
 <section>
-<h2><%=@question.title%></h2>
-<p><%=@question.content%></p>
-<p> <%=@question.vote_count%></p>
+  <h2><%=@question.title%></h2>
+  <p><%=@question.content%></p>
+  <p>Tags:</p>
+  <%@tags.each do |tag|%>
+  <%=link_to tag.name, tag%>
+  <%end%>
+  <p> <%=@question.vote_count%></p>
 </section>
+
+<section>
+  <h5>Responses</h5>
   <%@question.responses.each do |response| %>
   <section>
-    <h2>Responses</h2>
     <p>Response by: <%=response.user.email %>: <%=response.content %></p>
     </section>
   <% end %>
-  <div>
-  <div class = "vote-up">
-<%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
+
+<section>
+    <%= link_to "Submit a response!", new_question_response_path(@question)%>
+</section>
+
+<div class = "vote-up"<%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
     <%= hidden_field_tag :voteable_type, "Question" %>
     <%= hidden_field_tag :voteable_id, @question.id %>
     <%= hidden_field_tag :vote_status, true %>
@@ -41,8 +50,42 @@
 </section>
 
 <% @answers.each do |answer| %>
-  <p><%=answer.user.email %>
-  <%=answer.content %></p>
+  <p>By: <%=link_to answer.user.email, answer.user %> at: <%=answer.created_at%></p>
+ <p> <%=answer.content %></p>
+  <%=answer.vote_count%>
+  <br>
+  <%= link_to "Respond to this answer!", new_question_answer_response_path(@question, answer)%>
+    <% if author?(answer)%>
+    <%=link_to "Edit Answer", edit_question_answer_path(@question, answer) %>
+    <%=link_to 'delete answer', [@question, answer], method: :delete, data: {confirm: 'Sure about that?'}%>
+  <%end%>
+
+  <%if asker?(@question) && !answer.best%>
+    <%=link_to "Choose as most helpful", answer_path(answer), :method=> :put %>
+  <%elsif answer.best%>
+<img src="http://findicons.com/files/icons/2166/oxygen/48/checkmark_korganizer.png" alt="Best answer">
+  <%end%>
+
+</p>
+
+  <div class = "vote-up"<%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
+    <%= hidden_field_tag :voteable_type, "Answer" %>
+    <%= hidden_field_tag :voteable_id, answer.id %>
+    <%= hidden_field_tag :vote_status, true %>
+
+    <%= f.submit "UpVote"%>
+  <%end%>
+</div>
+
+<div class = "vote-down"><%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
+    <%= hidden_field_tag :voteable_type, "Answer" %>
+    <%= hidden_field_tag :voteable_id, answer.id %>
+    <%= hidden_field_tag :vote_status, false %>
+
+    <%= f.submit "DownVote"%>
+  <%end%>
+  </div>
+  
   <section>
     <h2>Responses</h2>
     <% answer.responses.each do |response| %>
@@ -50,10 +93,8 @@
     <% end %>
   </section>
 
-  <% if author?(answer)%>
-    <%=link_to "Edit Answer", edit_question_answer_path(@question, answer) %>
-    <%=link_to 'delete answer', [@question, answer], method: :delete, data: {confirm: 'Sure about that?'}%>
-  <%end%>
+
+
 <%end%>
 
 

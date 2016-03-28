@@ -19,14 +19,22 @@ class AnswersController < ApplicationController
   end
 
   def update
-    @answer =  Answer.find(params[:id])
-    @question = Question.find(params[:question_id])
+      @answer =  Answer.find(params[:id])
+    if params[:question_id]
+      @question = Question.find(params[:question_id])
 
-    if @answer.update(answer_params)
-      redirect_to question_path(@question)
+      if @answer.update(answer_params)
+        redirect_to question_path(@question)
+      else
+        flash.now[:notice] = "Your edit did not work."
+         redirect_to question_path(@question)
+          end
     else
-      flash.now[:notice] = "Your edit did not work."
-       redirect_to question_path(@question)
+       if  !!Answer.find_by(best:true)
+         Answer.find_by(best:true).update(best:false)
+       end
+         @answer.update(best:true)
+       redirect_to question_path(@answer.question)
 
     end
    end
