@@ -1,29 +1,34 @@
+<section>
 <h2><%=@question.title%></h2>
 <p><%=@question.content%></p>
 <p> <%=@question.vote_count%></p>
-<section>
-  <h2>Responses</h2>
-  <%@question.responses.each do |response| %>
-    <%=response.user.email %>: <%=response.content %>
-  <% end %>
 </section>
-<p><%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
+  <%@question.responses.each do |response| %>
+  <section>
+    <h2>Responses</h2>
+    <p>Response by: <%=response.user.email %>: <%=response.content %></p>
+    </section>
+  <% end %>
+  <div>
+  <div class = "vote-up">
+<%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
     <%= hidden_field_tag :voteable_type, "Question" %>
     <%= hidden_field_tag :voteable_id, @question.id %>
     <%= hidden_field_tag :vote_status, true %>
 
     <%= f.submit "UpVote"%>
   <%end%>
-</p>
+</div>
 
-<p><%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
+  <div class = "vote-down">
+<%= form_for @vote, url: {action:"create", controller: "votes"} do |f| %>
     <%= hidden_field_tag :voteable_type, "Question" %>
     <%= hidden_field_tag :voteable_id, @question.id %>
     <%= hidden_field_tag :vote_status, false %>
 
     <%= f.submit "DownVote"%>
   <%end%>
-</p>
+  </div>
 
 <p>-----------------------</p>
 

@@ -1,8 +1,10 @@
+<section>
 <h1> Questions </h1>
 
-<div>
 <% @questions.each do |question| %>
-  <%=question.vote_count%><div class = question-link><%=link_to question.title, question_path(question.id) %></div>
-  <br>
+<section>
+  <h4><%=link_to question.title, question_path(question.id) %></h4>
+  <p class = "light small"><%=question.user.email%>, Vote Count:<%=question.vote_count%></p>
+  </section>
 <% end %>
-</div>
+</section>

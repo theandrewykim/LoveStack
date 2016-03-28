@@ -31,11 +31,13 @@ ActiveRecord::Schema.define(version: 20160325160736) do
   create_table "questions", force: :cascade do |t|
     t.string   "title",      null: false
     t.text     "content",    null: false
+    t.integer  "tag_id",     null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "questions", ["tag_id"], name: "index_questions_on_tag_id", using: :btree
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "responses", force: :cascade do |t|
