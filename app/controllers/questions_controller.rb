@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
   def index
-    @questions = Question.all
+    @questions = Question.order("created_at DESC")
     @vote = Vote.new
   end
 
