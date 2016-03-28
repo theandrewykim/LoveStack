@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :logged_in?, except: [:index, :show]
 
-  helper_method :current_user, :author?
+  helper_method :current_user, :author?, :asker?
 
 
   def current_user
@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   def author?(answer)
     current_user && (current_user.id == answer.user_id)
+  end
+
+  def asker?(question)
+    current_user && (current_user.id == question.user_id)
   end
 
 
