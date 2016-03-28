@@ -14,7 +14,7 @@
  *= require_self
  */
 
-
+/*
 html,body{
   background-color: lightblue;
   height: 100%;
@@ -34,4 +34,4 @@ html,body{
   display:flex;
   justify-content:space-around;
   font-size: 1.5em;
-}
+}*/

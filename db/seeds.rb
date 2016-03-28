@@ -50,6 +50,7 @@ User.create(email:Faker::Internet.email, password:Faker::Number.number(6))
 
 
 30.times do
+
 @question = User.find(rand(1..5)).questions.create(title: Faker::Lorem.word, content: Faker::Lorem.sentences(10), tag_id:rand(1..3))
 
 end

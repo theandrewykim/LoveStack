@@ -20,14 +20,14 @@ def create
   @response = Response.new(response_params)
   @response.update(responsible_type: params[:responsible_type], responsible_id: params[:responsible_id])
  if @response.save
-    flash[:notice] = "Your question was posted!"
+    flash[:notice] = "Your response was posted!"
     if @response.responsible == Question.find(@response.responsible.id)
     redirect_to @response.responsible
   else
     redirect_to @response.responsible.question
   end
  else
-    flash.now[:notice] = "Your question was not posted correct."
+    flash.now[:notice] = "Your response was not posted correct."
     render "responses/new"
  end
 end
