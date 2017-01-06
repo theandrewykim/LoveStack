@@ -15,9 +15,8 @@
 <body>
 <script>
 <%if !!current_user%>
-var email = '<%=j current_user.email%>'  
-analytics.identify(email, {
-    email: email
+analytics.identify('<%=j current_user.email%>', {
+    email: '<%=j current_user.email%>'
   })
 <%end%>
 </script>
