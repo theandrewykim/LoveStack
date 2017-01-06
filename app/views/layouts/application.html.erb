@@ -14,6 +14,7 @@
 </head>
 <body>
 <script>
+analytics.page
 <%if !!current_user%>
 analytics.identify('<%=j current_user.email%>', {
     email: '<%=j current_user.email%>'
