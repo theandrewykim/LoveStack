@@ -1,6 +1,1 @@
-LoveStack
-Jonathan Silvestri, Peter Stratoudakis, Joe Plonsker, THE Andrew Kim
-
-We would like to develop a site where users can post questions related to technical issues. Other users can give possible solutions that will be voted on and then displayed in order of popularity. Users can also comment on specific answer in order to improve them.
-
-
+App with an Intercom integration setup through Segment.io's analytics library
