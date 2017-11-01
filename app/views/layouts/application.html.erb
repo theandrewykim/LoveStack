@@ -10,6 +10,14 @@
   analytics.load("s3yyXRvcaguEEuH7xYDfMa2VA0xxFel9");
   analytics.page();
   }}();
+  analytics.ready(function(){
+    intercomSettings = {
+      horizontal_padding: 100,
+    vertical_padding: 100
+  };
+  Intercom('update');
+
+});
 </script>
 </head>
 <body>
